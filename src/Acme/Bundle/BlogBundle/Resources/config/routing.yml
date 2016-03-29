@@ -1,0 +1,47 @@
+checkout_confirm:
+    path:     /order/checkout
+    defaults: { _controller: AcmeBlogBundle:Order:checkout }
+
+button_checkout_click:
+    path:     /order/index
+    defaults: { _controller: AcmeBlogBundle:Order:index }
+    
+check_out:
+    path:     /order/index
+    defaults: { _controller: AcmeBlogBundle:Order:index }
+
+add_to_cart:
+    path:     /product/add
+    defaults: { _controller: AcmeBlogBundle:Product:add }
+    
+remove_from_cart:
+    path:     /product/remove
+    defaults: { _controller: AcmeBlogBundle:Product:remove }
+
+acme_blog_homepage:
+    path:     /home/{name}
+    defaults: { _controller: AcmeBlogBundle:Product:index }
+
+home:
+    path:     /product/{name}
+    defaults: { _controller: AcmeBlogBundle:Product:index, name: "" }
+
+index:
+    path:     /product/index
+    defaults: { _controller: AcmeBlogBundle:Post:index }
+
+order_list:
+    path:     /order/order-list
+    defaults: { _controller: AcmeBlogBundle:Order:orderList }
+order_detail:
+    path:     /order/order-detail/{order_id}
+    defaults: { _controller: AcmeBlogBundle:Order:orderDetail }
+order_remove:
+    path:     /order/order-remove
+    defaults: { _controller: AcmeBlogBundle:Order:orderRemove }
+    
+order_update_product:
+    path:     /order/change-quantity
+    defaults: { _controller: AcmeBlogBundle:Order:liveChangeQuantity }
+    
+

@@ -1,0 +1,54 @@
+{% extends "::base.html.twig" %}
+{% block stylesheets %}
+    <link href="{{ asset('bundles/acmeblog/css/style.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/acmeblog/js/jquery/jquery-2.2.2.js') }}"></script>
+    <script src="{{ asset('bundles/acmeblog/js/myscript.js') }}"></script>
+{% endblock %}
+{% block title %}AcmeBlogBundle:Order:index{% endblock %}
+
+{% block body %}
+    <table>
+        <thead>
+            <tr>
+                <td><h4>Order Id</h4></td>
+                <td><h4>First Name</h4></td>
+                <td><h4>Last Name</h4></td>
+                <td><h4>Email</h4></td>
+                <td><h4>Shipping Address</h4></td>
+                <td><h4>Date Added</h4></td>
+                <td><h4>Date Modified</h4></td>
+                <td><h4>Status</h4></td>
+                <td><h4>Total Price</h4></td>
+                <td><h4>Detail</h4></td>
+                <td><h4>Action</h4></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% if results %}
+                {% for item in results%}
+                    <form name="order_remove_form" action="{{path('order_remove')}}" method="POST">
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <input type="hidden" value="{{item.id}}" name="order_id" />
+                        <td>{{item.firstname}}</td>
+                        <td>{{item.lastname}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.shipping_address}}</td>
+                        <td>{{item.date_added}}</td>
+                        <td>{{item.date_modified}}</td>
+                        <td>{{item.status_id}}</td>
+                        <td>{{item.total_price}}</td>
+                        <td><a href="{{path('order_detail', {order_id: item.id})}}" class="detail" >Detail</td>
+                        <td><input type="submit" value="Remove" id="order_remove" name="order_remove" /></td>
+                    </tr>
+                    </form>
+                {% endfor %}
+            {% else %}
+                <tr><td>Order not found!</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <a href="{{path('index')}}">Home</a>
+{% endblock %}

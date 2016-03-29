@@ -1,0 +1,60 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AcmeBlogBundle:Product:index{% endblock %}
+
+{% block body %}
+    <div class="container" style="width: 500px; margin: 0 auto  ">
+        <table style="float:left">
+            <tr><td><h4>Product</h4></td></tr>
+            {% if products %}
+                {% for item in products %}
+                    <form action="{{path("add_to_cart")}}" method="POST">
+                        <tr>
+                            <td style="border: 1px solid #ccc">
+                                <p>Name: {{item.name}}</p>
+                                Description: {{item.description}}</br>
+                                Price: {{item.price}}</br>
+                                Quantity: {{item.quantity}}</br>
+                                <input type="hidden" value="{{item.id}}" name="product_id" />
+                                <input type="hidden" value="{{item.name}}" name="name" />
+                                <input type="hidden" value="{{item.description}}" name="description" />
+                                <input type="hidden" value="{{item.price}}" name="price" />
+                                <input type="hidden" value="{{item.quantity}}" name="quantity" />
+
+                                <input type="submit" value="Add" name="cartAdd"/>
+                            </td>
+                        </tr>
+                    </form>
+                {% endfor %}
+            {% endif %}
+        </table>
+        <table style="float:right; ">
+            <tr><td><h4>Shopping Cart</h4></td></tr>
+            {% if carts %}
+                
+                {% for key, item in carts %}
+                    <form action="{{'remove_from_cart'}}" method="POST">
+                        <tr>
+                            <td style="border: 1px solid #ccc">
+                                <p>Name: {{item.name}}</p>
+                                Description: {{item.description}}</br>
+                                Price: {{item.price}}</br>
+                                Quantity: {{item.quantity}}</br>
+                                <input type="hidden" value="{{key}}" name="product_id" />
+                                <input type="hidden" value="{{item.name}}" name="name" />
+                                <input type="hidden" value="{{item.description}}" name="description" />
+                                <input type="hidden" value="{{item.price}}" name="price" />
+                                <input type="hidden" value="{{item.quantity}}" name="quantity" />
+
+                                <input type="submit" value="Remove" name="cartRemove"/>
+                            </td>
+                        </tr>
+                    </form>
+                {% endfor %}
+                <a href="{{path("button_checkout_click")}}"><button type="button">Check Out</button></a>
+            {% endif %}
+        </table>
+        <a href="{{path('order_list')}}"><button type="button">Order History</button></a>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "::base.html.twig" %}
+{% block stylesheets %}
+    <link href="{{ asset('bundles/acmeblog/css/style.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/acmeblog/js/jquery/jquery-2.2.2.js') }}"></script>
+    <script src="{{ asset('bundles/acmeblog/js/myscript.js') }}"></script>
+{% endblock %}
+{% block title %}AcmeBlogBundle:Order:index{% endblock %}
+
+{% block body %}
+    {% if(app.session.get('message')) %}
+        {% set sessionMessage = app.session.get('message'))%}
+        {% if sessionMessage.error %}
+            <span>----------------</span>
+            {% endif %}
+    {% endif %}
+    <h3>Order Information</h3>
+    <table>
+        {% if results %}
+            <tr><td>Order Id:</td><td>#{{results[0].order_id}}</td></tr>
+            <tr><td>Shipping Address:</td><td>{{results[0].shipping_address}}</td></tr>
+            <tr><td>Date Added:</td><td>{{results[0].date_added}}</td></tr>
+            <tr><td>Date Modified:</td><td>{{results[0].date_modified}}</td></tr>
+            <tr><td>Status:</td><td>{{results[0].status_id}}</td></tr>
+            <tr><td>Total Price:</td><td>{{results[0].total_price}}</td></tr>
+        {% endif %}
+    </table>
+    <h3>Customer Information</h3>
+    <table>
+        {% if results %}
+            <tr><td>Email:</td><td>{{customer.email}}</td></tr>
+            <tr><td>First Name:</td><td>{{customer.firstname}}</td></tr>
+            <tr><td>Last Name:</td><td>{{customer.lastname}}</td></tr>
+            <tr><td>Phone:</td><td>{{customer.phone}}</td></tr>
+        {% endif %}
+    </table>
+    <h3>Detail Product</h3>
+    <table class="product-list">
+        <thead >
+            <tr >
+                <td ><span>Product Id</span></td>
+                <td ><span>Name</span></td> 
+                <td ><span>Description</span></td>
+                <td ><span>Quantity</span></td>
+                <td ><span>Price</span></td>
+            </tr>
+        </thead
+        <tbody>
+            {% if results %}
+                {%for item in results%}
+                    <tr>
+                        <td>#{{item.product.id}}</td>
+                        <td>{{item.product.name}}</td>
+                        <td>{{item.product.description}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.price}}</td>
+                    </tr>  
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</table>
+<a href="{{path('order_list')}}">Order List</a>
+{% endblock %}
