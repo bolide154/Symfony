@@ -33,7 +33,7 @@
             {% if carts %}
                 
                 {% for key, item in carts %}
-                    <form action="{{'remove_from_cart'}}" method="POST">
+                    <form action="{{path('remove_from_cart')}}" method="POST">
                         <tr>
                             <td style="border: 1px solid #ccc">
                                 <p>Name: {{item.name}}</p>

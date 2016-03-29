@@ -34,6 +34,7 @@ class OrderDetailRepository extends EntityRepository
     
     public function findOrderDetailByOrderId($order_id){
         $sql = "SELECT * FROM symfony.`order_detail` od INNER JOIN symfony.`order` o ON od.order_id=o.id WHERE order_id=".$order_id;
+        
         $conn = $this->getEntityManager()->getConnection();
     	$stmt = $conn->prepare($sql);
     	$stmt->execute();

@@ -10,7 +10,7 @@
 
 {% block body %}
     {% if(app.session.get('message')) %}
-        {% set sessionMessage = app.session.get('message'))%}
+        {% set sessionMessage = app.session.get('message')%}
         {% if sessionMessage.error %}
             <span>----------------</span>
             {% endif %}

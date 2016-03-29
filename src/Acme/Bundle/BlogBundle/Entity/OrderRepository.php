@@ -15,9 +15,11 @@ class OrderRepository extends EntityRepository
 {
     public function addOrder($data, $customer_id){
        $sql="INSERT INTO symfony.`order` SET customer_id=".(int)$customer_id.", shipping_address='".$data['address']."', date_added='".date("Y/m/d")."', date_modified='', status_id=1, total_price=".$data['totalPrice'];
+       
        $conn = $this->getEntityManager()->getConnection();
     	$stmt = $conn->prepare($sql);
     	$stmt->execute();
+        
     	return $conn->lastInsertId();
     }
     public function findAllOrder()

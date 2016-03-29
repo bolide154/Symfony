@@ -64,7 +64,6 @@ class ProductController extends Controller {
     public function removeAction(Request $request) {
         $result = $this->getRequest()->request->all();
         $sessionValue = $this->get('session')->get('cart');
-
         if (!empty($sessionValue)) {
             if (array_key_exists($result['product_id'], $sessionValue)) {
                 if ($sessionValue[$result['product_id']]['quantity'] >= 1) {

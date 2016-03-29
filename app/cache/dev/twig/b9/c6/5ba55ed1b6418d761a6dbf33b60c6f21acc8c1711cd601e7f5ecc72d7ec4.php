@@ -125,7 +125,7 @@ class __TwigTemplate_b9c65ba55ed1b6418d761a6dbf33b60c6f21acc8c1711cd601e7f5ecc72
             foreach ($context['_seq'] as $context["key"] => $context["item"]) {
                 // line 36
                 echo "                    <form action=\"";
-                echo "remove_from_cart";
+                echo $this->env->getExtension('routing')->getPath("remove_from_cart");
                 echo "\" method=\"POST\">
                         <tr>
                             <td style=\"border: 1px solid #ccc\">

@@ -11,10 +11,6 @@
 
 {% block body %}
     {% if carts %}
-        {% if message %}
-            {% set a = app.session.get('message') %}
-            {% dump(message) %}
-            {% endif %}
         {{ form_start(form, {'action': path('checkout_confirm')}) }}
         <table class="product-list">
             <thead >
