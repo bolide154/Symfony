@@ -7,6 +7,7 @@ use Acme\Bundle\BlogBundle\Form\ConfirmCheckoutType;
 use Acme\Bundle\BlogBundle\Form\RemoveOrderType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Acme\Bundle\BlogBundle\Entity\Product;
 
 class OrderController extends Controller {
 
@@ -43,15 +44,16 @@ class OrderController extends Controller {
         $id = $request->request->get('id');
         $sessionValue = $this->get('session')->get('cart');
         $product = $this->get('doctrine')
-                        ->getRepository('AcmeBlogBundle:Product')->findProductById($id);
+                        ->getRepository('AcmeBlogBundle:Product')->findOneById($id);
         $responseContent = 1;
-        if ($quantity > $product['quantity']) {
+        
+        if ($quantity > $product->getQuantity()) {
             $responseContent = 0;
         } else {
             $responseContent = 1;
-            $sessionValue[$id]['quantity'] = $quantity;
+            $sessionValue[$id]['quantity'] = $quantity;            
         }
-        $this->get('session')->set('cart', $sessionValue);
+        $this->get('session')->set('cart', $sessionValue);        
         $response = new Response($responseContent);
         return $response;
     }
@@ -61,6 +63,7 @@ class OrderController extends Controller {
         $result = $request->request->all();
 
         $sessionValue = $this->get('session')->get('cart');
+        $sessionMessage = $this->get('session')->get('message');
         $checkValue = $request->get('account');
         $customer_id = null;
         $message = array();
@@ -70,14 +73,14 @@ class OrderController extends Controller {
             if ($customer && !$checkValue) {
                 $customer_id = $customer['customer_id'];
             } else if ($customer && $checkValue) {
-                $message['error'] = 'Customer exist!';
+                $this->get('session')->getFlashBag()->add('error', 'Customer exists!');
             } else if (!$customer && $checkValue) {
                 if ($result['firstname'] && $result['lastname']) {
                     $customer_id = $this->get('doctrine')->getRepository('AcmeBlogBundle:Customer')->addCustomer($result);
                 }
-                $message['error'] = 'Please fill First name and Last name!';
+                $this->get('session')->getFlashBag()->add('error', 'Please fill First Name and Last Name!');
             } else if (!$customer && !$checkValue) {
-                $message['error'] = 'Customer not exist!';
+                $this->get('session')->getFlashBag()->add('error', 'Customer not exists!');
             }
             $order_id = null;
             if ($customer_id) {
@@ -85,26 +88,36 @@ class OrderController extends Controller {
             }
             //If insert complete order into order table
             if (!empty($order_id)) {
+                $product = new Product();
                 foreach ($sessionValue as $key => $item) {
                     $this->get('doctrine')->getRepository('AcmeBlogBundle:OrderDetail')->addOrderDetail($key, $item, $order_id);
-                    $result = $this->get('doctrine')->getRepository('AcmeBlogBundle:Product')->findProductById($key);
-                    $product = array(
+                    
+                    $product = $this->get('doctrine')->getRepository('AcmeBlogBundle:Product')->findOneById($key);
+                    //var_dump($product);
+                    $data = array(
+                        'id' => $key,
                         'name' => $item['name'],
                         'description' => $item['description'],
                         'image_url' => $item['image_url'],
-                        'quantity' => ($result['quantity'] - $item['quantity']),
+                        'quantity' => ($product->getQuantity() - $item['quantity']),
                         'category_id' => $item['category_id'],
                         'price' => $item['price']
                     );
-                    $this->get('doctrine')->getRepository('AcmeBlogBundle:Product')->updateProduct($product, $key);
+                    $this->get('doctrine')->getRepository('AcmeBlogBundle:Product')->updateProduct($product, $data);
                 }
 
                 $this->get('session')->set('cart', null);
+                $url = $this->container->get('router')->generate('home');
+                return $this->redirect($url);
             }
-            $this->get('session')->set('message', $message);
-            $url = $this->container->get('router')->generate('home');
-            return $this->redirect($url);
+        } else {
+            $this->get('session')->getFlashBag()->add('error', 'Please fill Email and Address!');
         }
+            
+            
+
+        $url = $this->container->get('router')->generate('check_out');
+        return $this->redirect($url);
     }
 
     public function orderListAction() {
@@ -140,7 +153,7 @@ class OrderController extends Controller {
 
             foreach ($results as $key => $item) {
                 $product = $this->get('doctrine')->getRepository('AcmeBlogBundle:Product')
-                        ->findProductById($item['product_id']);
+                        ->findById($item['product_id']);
                 $args[$key]['product'] = $product;
             }
 

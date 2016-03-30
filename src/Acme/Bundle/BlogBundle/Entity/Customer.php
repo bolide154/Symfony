@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Customer
 {
     /**
+     * @var integer
+     */
+    private $customerId;
+
+    /**
      * @var string
      */
     private $email;
@@ -34,11 +39,16 @@ class Customer
      */
     private $phone;
 
-    /**
-     * @var integer
-     */
-    private $id;
 
+    /**
+     * Get customerId
+     *
+     * @return integer 
+     */
+    public function getCustomerId()
+    {
+        return $this->customerId;
+    }
 
     /**
      * Set email
@@ -153,15 +163,5 @@ class Customer
     public function getPhone()
     {
         return $this->phone;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }

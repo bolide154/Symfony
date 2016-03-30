@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Order
 {
     /**
+     * @var integer
+     */
+    private $id;
+
+    /**
      * @var string
      */
     private $shippingAddress;
@@ -30,15 +35,25 @@ class Order
     private $statusId;
 
     /**
-     * @var integer
+     * @var string
      */
-    private $id;
+    private $totalPrice;
 
     /**
      * @var \Acme\Bundle\BlogBundle\Entity\Customer
      */
     private $customer;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set shippingAddress
@@ -133,13 +148,26 @@ class Order
     }
 
     /**
-     * Get id
+     * Set totalPrice
      *
-     * @return integer 
+     * @param string $totalPrice
+     * @return Order
      */
-    public function getId()
+    public function setTotalPrice($totalPrice)
     {
-        return $this->id;
+        $this->totalPrice = $totalPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get totalPrice
+     *
+     * @return string 
+     */
+    public function getTotalPrice()
+    {
+        return $this->totalPrice;
     }
 
     /**

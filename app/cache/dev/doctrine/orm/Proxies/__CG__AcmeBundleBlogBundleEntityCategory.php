@@ -64,10 +64,10 @@ class Category extends \Acme\Bundle\BlogBundle\Entity\Category implements \Doctr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Acme\\Bundle\\BlogBundle\\Entity\\Category' . "\0" . 'name', '' . "\0" . 'Acme\\Bundle\\BlogBundle\\Entity\\Category' . "\0" . 'description', '' . "\0" . 'Acme\\Bundle\\BlogBundle\\Entity\\Category' . "\0" . 'id');
+            return array('__isInitialized__', '' . "\0" . 'Acme\\Bundle\\BlogBundle\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'Acme\\Bundle\\BlogBundle\\Entity\\Category' . "\0" . 'name', '' . "\0" . 'Acme\\Bundle\\BlogBundle\\Entity\\Category' . "\0" . 'description');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Acme\\Bundle\\BlogBundle\\Entity\\Category' . "\0" . 'name', '' . "\0" . 'Acme\\Bundle\\BlogBundle\\Entity\\Category' . "\0" . 'description', '' . "\0" . 'Acme\\Bundle\\BlogBundle\\Entity\\Category' . "\0" . 'id');
+        return array('__isInitialized__', '' . "\0" . 'Acme\\Bundle\\BlogBundle\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'Acme\\Bundle\\BlogBundle\\Entity\\Category' . "\0" . 'name', '' . "\0" . 'Acme\\Bundle\\BlogBundle\\Entity\\Category' . "\0" . 'description');
     }
 
     /**
@@ -176,6 +176,21 @@ class Category extends \Acme\Bundle\BlogBundle\Entity\Category implements \Doctr
     /**
      * {@inheritDoc}
      */
+    public function getId()
+    {
+        if ($this->__isInitialized__ === false) {
+            return (int)  parent::getId();
+        }
+
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
+
+        return parent::getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setName($name)
     {
 
@@ -215,21 +230,6 @@ class Category extends \Acme\Bundle\BlogBundle\Entity\Category implements \Doctr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDescription', array());
 
         return parent::getDescription();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getId()
-    {
-        if ($this->__isInitialized__ === false) {
-            return (int)  parent::getId();
-        }
-
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
-
-        return parent::getId();
     }
 
 }

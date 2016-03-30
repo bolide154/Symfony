@@ -1,0 +1,53 @@
+Acme\Bundle\BlogBundle\Entity\Product:
+    type: entity
+    table: product
+    repositoryClass: Acme\Bundle\BlogBundle\Entity\Repository\ProductRepository
+    indexes:
+        fk_product_1_idx:
+            columns:
+                - category_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+        imageUrl:
+            type: text
+            nullable: true
+            length: 65535
+            fixed: false
+            column: image_url
+        quantity:
+            type: integer
+            nullable: false
+            unsigned: false
+        price:
+            type: decimal
+            nullable: true
+            precision: 20
+            scale: 0
+    manyToOne:
+        category:
+            targetEntity: Category
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

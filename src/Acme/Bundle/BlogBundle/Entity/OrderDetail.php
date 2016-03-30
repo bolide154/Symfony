@@ -12,6 +12,11 @@ class OrderDetail
     /**
      * @var integer
      */
+    private $id;
+
+    /**
+     * @var integer
+     */
     private $quantity;
 
     /**
@@ -20,20 +25,25 @@ class OrderDetail
     private $price;
 
     /**
-     * @var integer
+     * @var \Acme\Bundle\BlogBundle\Entity\Order
      */
-    private $id;
+    private $order;
 
     /**
      * @var \Acme\Bundle\BlogBundle\Entity\Product
      */
     private $product;
 
-    /**
-     * @var \Acme\Bundle\BlogBundle\Entity\Order
-     */
-    private $order;
 
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set quantity
@@ -82,13 +92,26 @@ class OrderDetail
     }
 
     /**
-     * Get id
+     * Set order
      *
-     * @return integer 
+     * @param \Acme\Bundle\BlogBundle\Entity\Order $order
+     * @return OrderDetail
      */
-    public function getId()
+    public function setOrder(\Acme\Bundle\BlogBundle\Entity\Order $order = null)
     {
-        return $this->id;
+        $this->order = $order;
+
+        return $this;
+    }
+
+    /**
+     * Get order
+     *
+     * @return \Acme\Bundle\BlogBundle\Entity\Order 
+     */
+    public function getOrder()
+    {
+        return $this->order;
     }
 
     /**
@@ -112,28 +135,5 @@ class OrderDetail
     public function getProduct()
     {
         return $this->product;
-    }
-
-    /**
-     * Set order
-     *
-     * @param \Acme\Bundle\BlogBundle\Entity\Order $order
-     * @return OrderDetail
-     */
-    public function setOrder(\Acme\Bundle\BlogBundle\Entity\Order $order = null)
-    {
-        $this->order = $order;
-
-        return $this;
-    }
-
-    /**
-     * Get order
-     *
-     * @return \Acme\Bundle\BlogBundle\Entity\Order 
-     */
-    public function getOrder()
-    {
-        return $this->order;
     }
 }

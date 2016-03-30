@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Product
 {
     /**
+     * @var integer
+     */
+    private $id;
+
+    /**
      * @var string
      */
     private $name;
@@ -35,15 +40,20 @@ class Product
     private $price;
 
     /**
-     * @var integer
-     */
-    private $id;
-
-    /**
      * @var \Acme\Bundle\BlogBundle\Entity\Category
      */
     private $category;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set name
@@ -158,16 +168,6 @@ class Product
     public function getPrice()
     {
         return $this->price;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**

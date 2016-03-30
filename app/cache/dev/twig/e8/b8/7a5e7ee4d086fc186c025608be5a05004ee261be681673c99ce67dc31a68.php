@@ -77,6 +77,20 @@ class __TwigTemplate_e8b87a5e7ee4d086fc186c025608be5a05004ee261be681673c99ce67dc
         if ((isset($context["carts"]) ? $context["carts"] : $this->getContext($context, "carts"))) {
             // line 14
             echo "        ";
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "session", array()), "flashbag", array()), "get", array(0 => "error"), "method"));
+            foreach ($context['_seq'] as $context["_key"] => $context["flashMessage"]) {
+                // line 15
+                echo "            ";
+                echo twig_escape_filter($this->env, $context["flashMessage"], "html", null, true);
+                echo "
+        ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['flashMessage'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 17
+            echo "        ";
             echo             $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("action" => $this->env->getExtension('routing')->getPath("checkout_confirm")));
             echo "
         <table class=\"product-list\">
@@ -91,26 +105,26 @@ class __TwigTemplate_e8b87a5e7ee4d086fc186c025608be5a05004ee261be681673c99ce67dc
             </thead>
             <tbody>
                 ";
-            // line 26
+            // line 29
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["carts"]) ? $context["carts"] : $this->getContext($context, "carts")));
             foreach ($context['_seq'] as $context["key"] => $context["item"]) {
-                // line 27
+                // line 30
                 echo "                    <tr>
                         <td>#";
-                // line 28
+                // line 31
                 echo twig_escape_filter($this->env, $context["key"], "html", null, true);
                 echo "</td>
                         <td>";
-                // line 29
+                // line 32
                 echo twig_escape_filter($this->env, $this->getAttribute($context["item"], "name", array()), "html", null, true);
                 echo "</td>
                         <td>";
-                // line 30
+                // line 33
                 echo twig_escape_filter($this->env, $this->getAttribute($context["item"], "description", array()), "html", null, true);
                 echo "</td>
                         <td><input class=\"hidden-quantity\" data-url=\"";
-                // line 31
+                // line 34
                 echo $this->env->getExtension('routing')->getPath("order_update_product");
                 echo "\" data-id=\"";
                 echo twig_escape_filter($this->env, $context["key"], "html", null, true);
@@ -120,110 +134,110 @@ class __TwigTemplate_e8b87a5e7ee4d086fc186c025608be5a05004ee261be681673c99ce67dc
                 echo twig_escape_filter($this->env, $this->getAttribute($context["item"], "quantity", array()), "html", null, true);
                 echo "\"></td>
                         <td>";
-                // line 32
+                // line 35
                 echo twig_escape_filter($this->env, ($this->getAttribute($context["item"], "price", array()) * $this->getAttribute($context["item"], "quantity", array())), "html", null, true);
                 echo "</td>
-                        
+
                     </tr>
-                    
+
                 ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['key'], $context['item'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 37
+            // line 40
             echo "                <tr>
                     <td>Total price:</td>
                     <td>";
-            // line 39
+            // line 42
             echo twig_escape_filter($this->env, (isset($context["totalPrice"]) ? $context["totalPrice"] : $this->getContext($context, "totalPrice")), "html", null, true);
             echo "</td>
                     <td style=\"border:none\"><input type=\"hidden\" name=\"totalPrice\" value=\"";
-            // line 40
+            // line 43
             echo twig_escape_filter($this->env, (isset($context["totalPrice"]) ? $context["totalPrice"] : $this->getContext($context, "totalPrice")), "html", null, true);
             echo "\"/></td>
                 </tr>
             </tbody>
         </table>
-        
+
         <table>
             <tr>
                 <td>";
-            // line 47
+            // line 50
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "account", array()), 'widget');
             echo "
                     ";
-            // line 48
+            // line 51
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "account", array()), 'label', array("label" => "Non Account"));
             echo "</td>
             </tr>
             <tr>
                 <td>";
-            // line 51
+            // line 54
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email", array()), 'label', array("label" => "Email:"));
             echo "</td>
                 <td>";
-            // line 52
+            // line 55
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email", array()), 'widget');
             echo "</td>
                 <td>";
-            // line 53
+            // line 56
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "check_email", array()), 'widget');
             echo "</td>
             </tr>
             <tr>
                 <td>";
-            // line 56
+            // line 59
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "address", array()), 'label', array("label" => "Shipping Address:"));
             echo "</td>
                 <td>";
-            // line 57
+            // line 60
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "address", array()), 'widget');
             echo "</td>
             </tr>
-            
+
         </table>
         <div id=\"non-account\" style=\"display: none\">
             ";
-            // line 62
+            // line 65
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "firstname", array()), 'label', array("label" => "First name:"));
             echo "
             ";
-            // line 63
+            // line 66
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "firstname", array()), 'widget');
             echo "</br>
             ";
-            // line 64
+            // line 67
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "lastname", array()), 'label', array("label" => "Last name::"));
             echo "
             ";
-            // line 65
+            // line 68
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "lastname", array()), 'widget');
             echo "</br>
             ";
-            // line 66
+            // line 69
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "phone", array()), 'label', array("label" => "Phone:"));
             echo "
             ";
-            // line 67
+            // line 70
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "phone", array()), 'widget');
             echo "
         </div>
         <a href=\"";
-            // line 69
+            // line 72
             echo $this->env->getExtension('routing')->getPath("index");
             echo "\">Back</a>
         ";
-            // line 70
+            // line 73
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "confirm", array()), 'widget');
             echo "
         ";
-            // line 71
+            // line 74
             echo             $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
             echo "
     ";
         }
-        // line 73
+        // line 76
         echo "    <input type=\"hidden\" value=\"";
         echo $this->env->getExtension('routing')->getPath("order_update_product");
         echo "\" id=\"url-ajax-update-quantity\"/>
@@ -242,6 +256,6 @@ class __TwigTemplate_e8b87a5e7ee4d086fc186c025608be5a05004ee261be681673c99ce67dc
 
     public function getDebugInfo()
     {
-        return array (  227 => 73,  222 => 71,  218 => 70,  214 => 69,  209 => 67,  205 => 66,  201 => 65,  197 => 64,  193 => 63,  189 => 62,  181 => 57,  177 => 56,  171 => 53,  167 => 52,  163 => 51,  157 => 48,  153 => 47,  143 => 40,  139 => 39,  135 => 37,  124 => 32,  114 => 31,  110 => 30,  106 => 29,  102 => 28,  99 => 27,  95 => 26,  79 => 14,  76 => 13,  73 => 12,  67 => 10,  61 => 8,  57 => 7,  52 => 6,  49 => 5,  42 => 3,  39 => 2,  11 => 1,);
+        return array (  241 => 76,  236 => 74,  232 => 73,  228 => 72,  223 => 70,  219 => 69,  215 => 68,  211 => 67,  207 => 66,  203 => 65,  195 => 60,  191 => 59,  185 => 56,  181 => 55,  177 => 54,  171 => 51,  167 => 50,  157 => 43,  153 => 42,  149 => 40,  138 => 35,  128 => 34,  124 => 33,  120 => 32,  116 => 31,  113 => 30,  109 => 29,  93 => 17,  84 => 15,  79 => 14,  76 => 13,  73 => 12,  67 => 10,  61 => 8,  57 => 7,  52 => 6,  49 => 5,  42 => 3,  39 => 2,  11 => 1,);
     }
 }

@@ -1,0 +1,53 @@
+Acme\Bundle\BlogBundle\Entity\Order:
+    type: entity
+    table: order
+    repositoryClass: Acme\Bundle\BlogBundle\Entity\Repository\OrderRepository
+    indexes:
+        fk_order_customer_idx:
+            columns:
+                - customer_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        shippingAddress:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: shipping_address
+        dateAdded:
+            type: date
+            nullable: true
+            column: date_added
+        dateModified:
+            type: date
+            nullable: true
+            column: date_modified
+        statusId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: status_id
+        totalPrice:
+            type: string
+            nullable: true
+            length: 45
+            fixed: false
+            column: total_price
+    manyToOne:
+        customer:
+            targetEntity: Customer
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                customer_id:
+                    referencedColumnName: customer_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

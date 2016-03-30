@@ -2538,7 +2538,7 @@
               <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
                 <call method="addDriver">
                   <argument type="service">
-                    <service class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver" public="false">
+                    <service class="Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver" public="false">
                       <argument type="collection">
                         <argument key="/var/www/Symfony/src/Acme/Bundle/BlogBundle/Resources/config/doctrine">Acme\Bundle\BlogBundle\Entity</argument>
                       </argument>

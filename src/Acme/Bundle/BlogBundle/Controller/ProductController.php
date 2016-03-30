@@ -13,12 +13,14 @@ class ProductController extends Controller {
         $session->start();
         //$session->clear();
         $sessionValue = $this->get('session')->get('cart');
-
+        $message = $this->get('session')->get('message');
         $products = $this->get('doctrine')->getRepository('AcmeBlogBundle:Product')
-                ->findAllProduct();
+                ->findBy(array(), array('name' => 'ASC'));
+        
         return $this->render('AcmeBlogBundle:Product:index.html.twig', array(
                     'products' => $products,
-                    'carts' => $sessionValue
+                    'carts' => $sessionValue,
+                'message' => $message,
         ));
     }
 

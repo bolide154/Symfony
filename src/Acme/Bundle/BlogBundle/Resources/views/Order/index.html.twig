@@ -11,6 +11,9 @@
 
 {% block body %}
     {% if carts %}
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            {{ flashMessage }}
+        {% endfor %}
         {{ form_start(form, {'action': path('checkout_confirm')}) }}
         <table class="product-list">
             <thead >
@@ -30,9 +33,9 @@
                         <td>{{item.description}}</td>
                         <td><input class="hidden-quantity" data-url="{{path("order_update_product")}}" data-id="{{key}}" type="text" name="carts[{{key}}][quantity]" value="{{item.quantity}}"></td>
                         <td>{{item.price*item.quantity}}</td>
-                        
+
                     </tr>
-                    
+
                 {% endfor %}
                 <tr>
                     <td>Total price:</td>
@@ -41,7 +44,7 @@
                 </tr>
             </tbody>
         </table>
-        
+
         <table>
             <tr>
                 <td>{{ form_widget(form.account) }}
@@ -56,7 +59,7 @@
                 <td>{{ form_label(form.address, 'Shipping Address:') }}</td>
                 <td>{{ form_widget(form.address) }}</td>
             </tr>
-            
+
         </table>
         <div id="non-account" style="display: none">
             {{ form_label(form.firstname, 'First name:') }}

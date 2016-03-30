@@ -1,7 +1,6 @@
-$('.hidden-quantity').keyup(function() {
+$('.hidden-quantity').change(function() {
 quantityText = $(this).val();
 idText = $(this).attr('data-id');
-alert(quantityText);
      $.ajax({
         type: "POST",
         url: $("#url-ajax-update-quantity").val(),
@@ -12,8 +11,9 @@ alert(quantityText);
         success : function(response)
           {
                 if(response == 0){
-                    'Quantity is not correct!';
+                    alert('Quantity is not correct!');
                 }
+                
           },
         error : function() 
           {

@@ -30,7 +30,7 @@
     <table>
         {% if results %}
             <tr><td>Email:</td><td>{{customer.email}}</td></tr>
-            <tr><td>First Name:</td><td>{{customer.firstname}}</td></tr>
+            <tr><td>Firddst Name:</td><td>{{customer.firstname}}</td></tr>
             <tr><td>Last Name:</td><td>{{customer.lastname}}</td></tr>
             <tr><td>Phone:</td><td>{{customer.phone}}</td></tr>
         {% endif %}
@@ -48,13 +48,13 @@
         </thead
         <tbody>
             {% if results %}
-                {%for item in results%}
+                {%for key,item in results%}
                     <tr>
-                        <td>#{{item.product.id}}</td>
-                        <td>{{item.product.name}}</td>
-                        <td>{{item.product.description}}</td>
-                        <td>{{item.quantity}}</td>
-                        <td>{{item.price}}</td>
+                        <td>#{{item.product[0].id}}</td>
+                        <td>{{item.product[0].name}}</td>
+                        <td>{{item.product[0].description}}</td>
+                        <td>{{item.product[0].quantity}}</td>
+                        <td>{{item.product[0].price}}</td>
                     </tr>  
                 {% endfor %}
             {% endif %}

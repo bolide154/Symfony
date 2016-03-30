@@ -127,7 +127,7 @@ class __TwigTemplate_dc217eef103f301d83574db8bb699afa57d927ee7cc3cb50f7b7fb96689
             echo "            <tr><td>Email:</td><td>";
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["customer"]) ? $context["customer"] : $this->getContext($context, "customer")), "email", array()), "html", null, true);
             echo "</td></tr>
-            <tr><td>First Name:</td><td>";
+            <tr><td>Firddst Name:</td><td>";
             // line 33
             echo twig_escape_filter($this->env, $this->getAttribute((isset($context["customer"]) ? $context["customer"] : $this->getContext($context, "customer")), "firstname", array()), "html", null, true);
             echo "</td></tr>
@@ -162,34 +162,34 @@ class __TwigTemplate_dc217eef103f301d83574db8bb699afa57d927ee7cc3cb50f7b7fb96689
             echo "                ";
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["results"]) ? $context["results"] : $this->getContext($context, "results")));
-            foreach ($context['_seq'] as $context["_key"] => $context["item"]) {
+            foreach ($context['_seq'] as $context["key"] => $context["item"]) {
                 // line 52
                 echo "                    <tr>
                         <td>#";
                 // line 53
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["item"], "product", array()), "id", array()), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["item"], "product", array()), 0, array(), "array"), "id", array()), "html", null, true);
                 echo "</td>
                         <td>";
                 // line 54
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["item"], "product", array()), "name", array()), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["item"], "product", array()), 0, array(), "array"), "name", array()), "html", null, true);
                 echo "</td>
                         <td>";
                 // line 55
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["item"], "product", array()), "description", array()), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["item"], "product", array()), 0, array(), "array"), "description", array()), "html", null, true);
                 echo "</td>
                         <td>";
                 // line 56
-                echo twig_escape_filter($this->env, $this->getAttribute($context["item"], "quantity", array()), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["item"], "product", array()), 0, array(), "array"), "quantity", array()), "html", null, true);
                 echo "</td>
                         <td>";
                 // line 57
-                echo twig_escape_filter($this->env, $this->getAttribute($context["item"], "price", array()), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["item"], "product", array()), 0, array(), "array"), "price", array()), "html", null, true);
                 echo "</td>
                     </tr>  
                 ";
             }
             $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['item'], $context['_parent'], $context['loop']);
+            unset($context['_seq'], $context['_iterated'], $context['key'], $context['item'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 60
             echo "            ";
