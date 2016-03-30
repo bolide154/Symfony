@@ -1,6 +1,6 @@
 Acme\Bundle\BlogBundle\Entity\Order:
     type: entity
-    table: order
+    table: `order`
     repositoryClass: Acme\Bundle\BlogBundle\Entity\Repository\OrderRepository
     indexes:
         fk_order_customer_idx:

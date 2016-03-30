@@ -135,8 +135,13 @@ class OrderController extends Controller {
 
     public function orderRemoveAction(Request $request) {
         $result = $request->request->all();
-        $this->get('doctrine')->getRepository('AcmeBlogBundle:OrderDetail')->deleteOrderDetailByOrderId($result['order_id']);
-        $this->get('doctrine')->getRepository('AcmeBlogBundle:Order')->deleteOrderById($result['order_id']);
+        //$this->get('doctrine')->getRepository('AcmeBlogBundle:OrderDetail')->deleteOrderDetailByOrderId($result['order_id']);
+        print_r($result['order_id']);
+        $order = $this->get('doctrine')->getRepository('AcmeBlogBundle:Order')
+                ->findById($result['order_id']);
+        print_r($order);
+        die();
+        $this->get('doctrine')->getRepository('AcmeBlogBundle:Order')->deleteOrder($order);
         $url = $this->container->get('router')->generate('order_list');
         return $this->redirect($url);
     }

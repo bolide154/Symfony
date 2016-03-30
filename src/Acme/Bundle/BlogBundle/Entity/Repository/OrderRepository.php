@@ -36,14 +36,13 @@ class OrderRepository extends EntityRepository
     	$stmt->execute();
         return $stmt->fetchAll();
     }
-    public function deleteOrderById($order_id){
-        $sql = "DELETE FROM symfony.`order` WHERE id=".$order_id;
-        $conn = $this->getEntityManager()->getConnection();
-    	$stmt = $conn->prepare($sql);
-    	$stmt->execute();
+    public function deleteOrder($order){
+        $em = $this->getEntityManager();
+        $em->remove($order);
+        $em->flush();
     }
     
-    public function findOrderByOrderId($order_id){
+    public function findOrderById($order_id){
         $sql = "SELECT * FROM symfony.`order` WHERE id=".$order_id;
         $conn = $this->getEntityManager()->getConnection();
     	$stmt = $conn->prepare($sql);
